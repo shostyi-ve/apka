@@ -13,8 +13,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - /var/lib/postgresql/data
-      - ./docker-compose-init-db:/docker-entrypoint-initdb.d
+      - postgres-db-data:/var/lib/postgresql/data
+      - ./schemes/:/docker-entrypoint-initdb.d/
     environment:
       - POSTGRES_DB=backend
       - POSTGRES_USER=backend
@@ -24,3 +24,6 @@ services:
     build:
       context: ./weather-api
       dockerfile: deployments/Dockerfile
+
+volumes:
+  postgres-db-data:
