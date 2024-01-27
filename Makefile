@@ -1,7 +1,13 @@
+
+DC := docker-compose -f ./docker-compose.yaml
+.PHONY: build
+build:
+	${DC} build
+
 .PHONY: up
 up:
-	docker-compose -f ./docker-compose.yaml up -d
+	${DC} up -d
 
 .PHONY: down
 down:
-	docker-compose -f ./docker-compose.yaml down
+	${DC} down
