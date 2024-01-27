@@ -22,6 +22,10 @@
   "liveNow": false,
   "panels": [
     {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "f85619a8-02fb-49d5-8190-5b4b05ed13bc"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -75,7 +79,28 @@
           },
           "unitScale": true
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "A Is day?"
+            },
+            "properties": [
+              {
+                "id": "custom.fillOpacity",
+                "value": 15
+              },
+              {
+                "id": "custom.gradientMode",
+                "value": "hue"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 0
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 21,
@@ -92,7 +117,7 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -107,19 +132,53 @@
           "fields": [
             {
               "jsonPath": "$.hourly.time[*]",
-              "name": "hour",
+              "name": "Hour",
               "type": "time"
             },
             {
               "jsonPath": "$.hourly.temperature_2m[*]",
               "language": "jsonpath",
-              "name": "temp",
+              "name": "Temperature",
               "type": "number"
+            },
+            {
+              "jsonPath": "$.hourly.is_day[*]",
+              "language": "jsonpath",
+              "name": "Is day?",
+              "type": "boolean"
+            },
+            {
+              "jsonPath": "$.hourly.wind_speed_10m[*]",
+              "language": "jsonpath",
+              "name": "Wind speed",
+              "type": "number"
+            },
+            {
+              "jsonPath": "",
+              "language": "jsonpath",
+              "name": ""
             }
           ],
           "method": "GET",
           "queryParams": "",
           "refId": "A",
+          "urlPath": ""
+        },
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "f85619a8-02fb-49d5-8190-5b4b05ed13bc"
+          },
+          "fields": [
+            {
+              "jsonPath": ""
+            }
+          ],
+          "hide": false,
+          "method": "GET",
+          "queryParams": "",
+          "refId": "B",
           "urlPath": ""
         }
       ],
@@ -141,6 +200,6 @@
   "timezone": "",
   "title": "Weather dashboard",
   "uid": "f7517092-816a-4f79-9f05-7a5d6364736e",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
