@@ -19,3 +19,8 @@ services:
       - POSTGRES_DB=backend
       - POSTGRES_USER=backend
       - POSTGRES_PASSWORD=12345
+
+  weather-handler:
+    build:
+      context: ./weather-api
+      dockerfile: deployments/Dockerfile
