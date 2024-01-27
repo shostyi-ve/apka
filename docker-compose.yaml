@@ -24,6 +24,8 @@ services:
     build:
       context: ./weather-api
       dockerfile: deployments/Dockerfile
+    ports:
+      - "8080:8080"
 
 volumes:
   postgres-db-data:
