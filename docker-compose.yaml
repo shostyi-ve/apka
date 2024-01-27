@@ -6,3 +6,16 @@ services:
     restart: unless-stopped
     ports:
      - '3000:3000'
+
+  db:
+    image: postgres:13
+    command: ["postgres", "-c", "fsync=0", "-c", "full_page_writes=off", "-c", "bgwriter_lru_maxpages=0", "-c", "synchronous_commit=off", "-c", "log_statement=all", "-c", "wal_level=logical"]
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/postgresql/data
+      - ./docker-compose-init-db:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_DB=backend
+      - POSTGRES_USER=backend
+      - POSTGRES_PASSWORD=12345
