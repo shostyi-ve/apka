@@ -23,9 +23,11 @@ ENV WORK_DIR /opt
 
 ENV BIN_FILE ${WORK_DIR}/apka
 ENV CONFIG /go/src/config/.env
+ENV WEATHER /go/src/weather.json
 
 COPY --from=build ${BIN_FILE} ${BIN_FILE}
 COPY --from=build ${CONFIG} ${WORK_DIR}/config/.env
+COPY --from=build ${WEATHER} ${WORK_DIR}/weather.json
 
 WORKDIR ${WORK_DIR}
 CMD ${BIN_FILE}

@@ -22,10 +22,6 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "f85619a8-02fb-49d5-8190-5b4b05ed13bc"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {

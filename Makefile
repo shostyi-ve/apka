@@ -11,3 +11,10 @@ up:
 .PHONY: down
 down:
 	${DC} down
+
+.PHONY: clean 
+clean:
+	docker volume prune -f
+
+.PHONY: restart
+restart: down clean build up
