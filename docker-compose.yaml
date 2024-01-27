@@ -10,7 +10,7 @@ services:
     extra_hosts:
      - "host.docker.internal:host-gateway"
     volumes:
-     - ./grafana/weather-dashboard.yaml:/etc/grafana/provisioning/dashboards/weather-dashboard.yaml
+     - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
      - ./grafana/dashboards:/var/lib/grafana/dashboards
      - 'grafana_storage:/var/lib/grafana'
 
