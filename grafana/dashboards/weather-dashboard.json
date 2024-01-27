@@ -39,8 +39,8 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
+            "fillOpacity": 5,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -48,6 +48,9 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -83,16 +86,16 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "A Is day?"
+              "options": "Is day?"
             },
             "properties": [
               {
                 "id": "custom.fillOpacity",
-                "value": 15
+                "value": 14
               },
               {
                 "id": "custom.gradientMode",
-                "value": "hue"
+                "value": "opacity"
               },
               {
                 "id": "custom.lineWidth",
@@ -152,37 +155,15 @@
               "language": "jsonpath",
               "name": "Wind speed",
               "type": "number"
-            },
-            {
-              "jsonPath": "",
-              "language": "jsonpath",
-              "name": ""
             }
           ],
           "method": "GET",
           "queryParams": "",
           "refId": "A",
           "urlPath": ""
-        },
-        {
-          "cacheDurationSeconds": 300,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "f85619a8-02fb-49d5-8190-5b4b05ed13bc"
-          },
-          "fields": [
-            {
-              "jsonPath": ""
-            }
-          ],
-          "hide": false,
-          "method": "GET",
-          "queryParams": "",
-          "refId": "B",
-          "urlPath": ""
         }
       ],
-      "title": "Panel Title",
+      "title": "Weather chart",
       "type": "timeseries"
     }
   ],
