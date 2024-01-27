@@ -8,8 +8,8 @@ import (
 	"go.uber.org/fx"
 )
 
-func Start() {
-	fx.New(
+func Build() *fx.App {
+	return fx.New(
 		server.Module,
 		app.Module,
 		config.Module,

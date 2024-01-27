@@ -6,9 +6,7 @@ import (
 	"go.uber.org/fx"
 )
 
-const addr = "localhost:8080"
-
-var Module = fx.Module("example",
+var Module = fx.Module("weather",
 	fx.Provide(
 		handler.NewWeatherHandler,
 	),

@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -18,6 +19,7 @@ func (h *WeatherHandler) RegisterRoutes(app *fiber.App) {
 }
 
 func (h *WeatherHandler) GetWeather(ctx *fiber.Ctx) {
+	fmt.Println(ctx)
 	file, err := os.ReadFile("weather.json")
 	if err != nil {
 		log.Fatal(err)

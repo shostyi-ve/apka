@@ -1,4 +1,5 @@
 version: "3.8"
+
 services:
   grafana:
     image: grafana/grafana-enterprise
@@ -6,6 +7,12 @@ services:
     restart: unless-stopped
     ports:
      - '3000:3000'
+    extra_hosts:
+     - "host.docker.internal:host-gateway"
+    volumes:
+     - ./grafana/weather-dashboard.yaml:/etc/grafana/provisioning/dashboards/weather-dashboard.yaml
+     - ./grafana/dashboards:/var/lib/grafana/dashboards
+     - 'grafana_storage:/var/lib/grafana'
 
   db:
     image: postgres:13
@@ -19,3 +26,6 @@ services:
       - POSTGRES_DB=backend
       - POSTGRES_USER=backend
       - POSTGRES_PASSWORD=12345
+
+volumes:
+  grafana_storage: {}

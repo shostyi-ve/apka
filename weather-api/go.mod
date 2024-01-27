@@ -5,6 +5,7 @@ go 1.21.5
 require (
 	github.com/gofiber/fiber v1.14.6
 	github.com/joeshaw/envdecode v0.0.0-20200121155833-099f1fc765bd
+	github.com/joho/godotenv v1.5.1
 	github.com/pkg/errors v0.8.1
 	go.uber.org/fx v1.20.1
 )
