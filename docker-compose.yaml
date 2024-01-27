@@ -9,7 +9,6 @@ services:
      - '3000:3000'
     environment:
     - "GF_INSTALL_PLUGINS=marcusolsson-json-datasource"
-    - "GF_AUTH_DISABLE_LOGIN_FORM=true"
     - "GF_AUTH_ANONYMOUS_ENABLED=true"
     volumes:
      - ./grafana/dashboards:/var/lib/grafana/dashboards
