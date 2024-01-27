@@ -12,7 +12,7 @@ services:
     volumes:
      - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
      - ./grafana/dashboards:/var/lib/grafana/dashboards
-     - 'grafana_storage:/var/lib/grafana'
+     - grafana_storage:/var/lib/grafana
 
   db:
     image: postgres:13

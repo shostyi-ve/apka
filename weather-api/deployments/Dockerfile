@@ -19,7 +19,13 @@ RUN CGO_ENABLED=0 go build \
 
 FROM alpine:3.9
 
-ENV BIN_FILE /opt/apka
-COPY --from=build ${BIN_FILE} ${BIN_FILE}
+ENV WORK_DIR /opt
 
+ENV BIN_FILE ${WORK_DIR}/apka
+ENV CONFIG /go/src/config/.env
+
+COPY --from=build ${BIN_FILE} ${BIN_FILE}
+COPY --from=build ${CONFIG} ${WORK_DIR}/config/.env
+
+WORKDIR ${WORK_DIR}
 CMD ${BIN_FILE}
