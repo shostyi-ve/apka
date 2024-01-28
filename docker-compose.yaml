@@ -7,15 +7,19 @@ services:
     restart: unless-stopped
     ports:
      - '3000:3000'
-    extra_hosts:
-     - "host.docker.internal:host-gateway"
+    environment:
+    - "GF_INSTALL_PLUGINS=marcusolsson-json-datasource"
+    - "GF_AUTH_ANONYMOUS_ENABLED=true"
     volumes:
-     - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
      - ./grafana/dashboards:/var/lib/grafana/dashboards
-     - grafana_storage:/var/lib/grafana
+     - ./grafana/provisioning:/etc/grafana/provisioning
+     - grafana-storage:/var/lib/grafana
+    networks:
+     - grafana-network
 
   db:
     image: postgres:13
+    container_name: pg-db
     command: ["postgres", "-c", "fsync=0", "-c", "full_page_writes=off", "-c", "bgwriter_lru_maxpages=0", "-c", "synchronous_commit=off", "-c", "log_statement=all", "-c", "wal_level=logical"]
     ports:
       - "5432:5432"
@@ -27,13 +31,21 @@ services:
       - POSTGRES_USER=backend
       - POSTGRES_PASSWORD=12345
 
-  weather-handler:
+  weather-service:
     build:
       context: ./weather-api
       dockerfile: deployments/Dockerfile
+    container_name: weather-service
     ports:
       - "8080:8080"
+    networks:
+     - grafana-network
 
 volumes:
   postgres-db-data:
-  grafana_storage: 
+  grafana-storage: 
+
+networks:
+  grafana-network:
+    driver: bridge
+    external: false

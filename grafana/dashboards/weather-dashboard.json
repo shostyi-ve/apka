@@ -39,8 +39,8 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
+            "fillOpacity": 5,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -48,6 +48,9 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -79,7 +82,28 @@
           },
           "unitScale": true
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Is day?"
+            },
+            "properties": [
+              {
+                "id": "custom.fillOpacity",
+                "value": 14
+              },
+              {
+                "id": "custom.gradientMode",
+                "value": "opacity"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 0
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 21,
@@ -96,7 +120,7 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -111,23 +135,45 @@
           "fields": [
             {
               "jsonPath": "$.hourly.time[*]",
-              "name": "hour",
+              "name": "Hour",
               "type": "time"
             },
             {
               "jsonPath": "$.hourly.temperature_2m[*]",
               "language": "jsonpath",
-              "name": "temp",
+              "name": "Temperature",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.hourly.is_day[*]",
+              "language": "jsonpath",
+              "name": "Is day?",
+              "type": "boolean"
+            },
+            {
+              "jsonPath": "$.hourly.wind_speed_10m[*]",
+              "language": "jsonpath",
+              "name": "Wind speed",
               "type": "number"
             }
           ],
           "method": "GET",
+          "params": [
+            [
+              "timeStart",
+              "$__isoFrom()"
+            ],
+            [
+              "timeEnd",
+              "$__isoTo()"
+            ]
+          ],
           "queryParams": "",
           "refId": "A",
-          "urlPath": ""
+          "urlPath": "/weather"
         }
       ],
-      "title": "Panel Title",
+      "title": "Weather chart",
       "type": "timeseries"
     }
   ],
@@ -135,7 +181,73 @@
   "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "Ukraine",
+          "value": "Ukraine"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Country",
+        "options": [
+          {
+            "selected": true,
+            "text": "Ukraine",
+            "value": "Ukraine"
+          },
+          {
+            "selected": false,
+            "text": "USA",
+            "value": "USA"
+          },
+          {
+            "selected": false,
+            "text": "France",
+            "value": "France"
+          }
+        ],
+        "query": "Ukraine, USA, France",
+        "queryValue": "u",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "None"
+          ],
+          "value": [
+            ""
+          ]
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "City",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": ""
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/cities"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "2024-01-10T22:00:00.000Z",
@@ -145,6 +257,6 @@
   "timezone": "",
   "title": "Weather dashboard",
   "uid": "f7517092-816a-4f79-9f05-7a5d6364736e",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
