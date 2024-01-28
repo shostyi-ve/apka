@@ -158,9 +158,19 @@
             }
           ],
           "method": "GET",
+          "params": [
+            [
+              "timeStart",
+              "$__isoFrom()"
+            ],
+            [
+              "timeEnd",
+              "$__isoTo()"
+            ]
+          ],
           "queryParams": "",
           "refId": "A",
-          "urlPath": ""
+          "urlPath": "/weather"
         }
       ],
       "title": "Weather chart",
@@ -171,7 +181,73 @@
   "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "Ukraine",
+          "value": "Ukraine"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Country",
+        "options": [
+          {
+            "selected": true,
+            "text": "Ukraine",
+            "value": "Ukraine"
+          },
+          {
+            "selected": false,
+            "text": "USA",
+            "value": "USA"
+          },
+          {
+            "selected": false,
+            "text": "France",
+            "value": "France"
+          }
+        ],
+        "query": "Ukraine, USA, France",
+        "queryValue": "u",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "None"
+          ],
+          "value": [
+            ""
+          ]
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "City",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": ""
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/cities"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "2024-01-10T22:00:00.000Z",
