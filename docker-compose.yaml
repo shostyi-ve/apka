@@ -41,6 +41,17 @@ services:
     networks:
      - grafana-network
 
+  weather-prediction-service:
+    build:
+      context: ./weather-prediction-api
+      dockerfile: deployments/Dockerfile
+    container_name: weather-prediction-service
+    ports:
+      - "8081:8081"
+    networks:
+     - grafana-network
+
+
 volumes:
   postgres-db-data:
   grafana-storage: 
