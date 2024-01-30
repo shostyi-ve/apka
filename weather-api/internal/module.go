@@ -9,8 +9,12 @@ import (
 var Module = fx.Module("weather",
 	fx.Provide(
 		handler.NewWeatherHandler,
+		handler.NewGeoHandler,
 	),
 	fx.Invoke(func(h *handler.WeatherHandler, app *fiber.App) {
+		h.RegisterRoutes(app)
+	}),
+	fx.Invoke(func(h *handler.GeoHandler, app *fiber.App) {
 		h.RegisterRoutes(app)
 	}),
 )

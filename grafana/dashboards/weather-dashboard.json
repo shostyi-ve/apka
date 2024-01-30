@@ -71,8 +71,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -184,62 +183,57 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "Ukraine",
-          "value": "Ukraine"
+          "selected": false,
+          "text": "Afghanistan",
+          "value": "Afghanistan"
         },
+        "definition": "$.[*].name",
         "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "Country",
-        "options": [
-          {
-            "selected": true,
-            "text": "Ukraine",
-            "value": "Ukraine"
-          },
-          {
-            "selected": false,
-            "text": "USA",
-            "value": "USA"
-          },
-          {
-            "selected": false,
-            "text": "France",
-            "value": "France"
-          }
-        ],
-        "query": "Ukraine, USA, France",
-        "queryValue": "u",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": "$.[*].name",
+              "name": "name"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/countries"
+        },
+        "refresh": 1,
+        "regex": "",
         "skipUrlSync": false,
-        "type": "custom"
+        "sort": 0,
+        "type": "query"
       },
       {
         "current": {
-          "selected": true,
-          "text": [
-            "None"
-          ],
-          "value": [
-            ""
-          ]
+          "selected": false,
+          "text": "Herat",
+          "value": "Herat"
         },
-        "definition": "",
+        "definition": "$.[*]",
         "hide": 0,
         "includeAll": false,
-        "multi": true,
+        "multi": false,
         "name": "City",
         "options": [],
         "query": {
           "cacheDurationSeconds": 300,
           "fields": [
             {
-              "jsonPath": ""
+              "jsonPath": "$.[*]",
+              "name": "name"
             }
           ],
           "method": "GET",
           "queryParams": "",
-          "urlPath": "/cities"
+          "urlPath": "/cities/${Country.name}"
         },
         "refresh": 1,
         "regex": "",
