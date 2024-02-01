@@ -12,7 +12,7 @@ import (
 
 const (
 	geocodingAPIURL = "https://geocoding-api.open-meteo.com/v1/search"
-	historyAPIURL   = "https://archive-api.open-meteo.com/v1/archive?latitude=%f&longitude=%f&start_date=2024-01-16&end_date=2024-01-30&hourly=temperature_2m,relative_humidity_2m,cloud_cover,wind_speed_10m,wind_direction_10m,snowfall,rain,weather_code,visibility,is_day"
+	historyAPIURL   = "https://archive-api.open-meteo.com/v1/archive?latitude=%f&longitude=%f&start_date=%s&end_date=%s&hourly=temperature_2m,relative_humidity_2m,cloud_cover,wind_speed_10m,wind_direction_10m,snowfall,rain,weather_code,visibility,is_day"
 )
 
 type Client struct{}
@@ -37,6 +37,8 @@ type HistoryResponse struct {
 
 type HistoryRequest struct {
 	Coordinates Coordinates
+	StartDate   time.Time
+	EndData     time.Time
 }
 
 type Coordinates struct {
@@ -67,7 +69,7 @@ func (c *Client) Coordinates(_ context.Context, req CoordinatesRequest) (*Coordi
 }
 
 func (c *Client) History(_ context.Context, req HistoryRequest) (*HistoryResponse, error) {
-	apiURL := fmt.Sprintf(historyAPIURL, req.Coordinates.Lat, req.Coordinates.Lon)
+	apiURL := fmt.Sprintf(historyAPIURL, req.Coordinates.Lat, req.Coordinates.Lon, req.StartDate.Format("2006-01-02"), req.EndData.Format("2006-01-02"))
 
 	resp, err := http.Get(apiURL)
 	if err != nil {

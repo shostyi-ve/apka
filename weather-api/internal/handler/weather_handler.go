@@ -8,8 +8,7 @@ import (
 	"github.com/gofiber/fiber"
 )
 
-type WeatherHandler struct{
-
+type WeatherHandler struct {
 }
 
 func NewWeatherHandler() *WeatherHandler {
@@ -17,10 +16,21 @@ func NewWeatherHandler() *WeatherHandler {
 }
 
 func (h *WeatherHandler) RegisterRoutes(app *fiber.App) {
-	app.Get("/api/weather", h.GetWeather)
+	app.Get("/api/weather/history", h.GetHistoricalWeather)
+	app.Get("/api/weather/forecast", h.GetForecastWeather)
 }
 
-func (h *WeatherHandler) GetWeather(ctx *fiber.Ctx) {
+func (h *WeatherHandler) GetHistoricalWeather(ctx *fiber.Ctx) {
+	fmt.Println(ctx)
+	file, err := os.ReadFile("weather.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	ctx.SendBytes(file)
+}
+
+func (h *WeatherHandler) GetForecastWeather(ctx *fiber.Ctx) {
 	fmt.Println(ctx)
 	file, err := os.ReadFile("weather.json")
 	if err != nil {
@@ -31,6 +41,5 @@ func (h *WeatherHandler) GetWeather(ctx *fiber.Ctx) {
 }
 
 func (h *WeatherHandler) PredictWeather(ctx *fiber.Ctx) {
-
 
 }
