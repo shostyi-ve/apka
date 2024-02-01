@@ -7,10 +7,12 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"time"
 )
 
 const (
 	geocodingAPIURL = "https://geocoding-api.open-meteo.com/v1/search"
+	historyAPIURL   = "https://archive-api.open-meteo.com/v1/archive?latitude=%f&longitude=%f&start_date=2024-01-16&end_date=2024-01-30&hourly=temperature_2m,relative_humidity_2m,cloud_cover,wind_speed_10m,wind_direction_10m,snowfall,rain,weather_code,visibility,is_day"
 )
 
 type Client struct{}
@@ -25,8 +27,16 @@ type CoordinatesResponse struct {
 }
 
 type CoordinatesRequest struct {
-	Country string `json:"country"`
-	City    string `json:"city"`
+	City string `json:"city"`
+}
+
+type HistoryResponse struct {
+	Data        string
+	DateCreated time.Time
+}
+
+type HistoryRequest struct {
+	Coordinates Coordinates
 }
 
 type Coordinates struct {
@@ -54,4 +64,29 @@ func (c *Client) Coordinates(_ context.Context, req CoordinatesRequest) (*Coordi
 	}
 
 	return &dto.Results[0], nil
+}
+
+func (c *Client) History(_ context.Context, req HistoryRequest) (*HistoryResponse, error) {
+	apiURL := fmt.Sprintf(historyAPIURL, req.Coordinates.Lat, req.Coordinates.Lon)
+
+	resp, err := http.Get(apiURL)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	var dto HistoryResponse
+	dto.Data = string(body)
+	dto.DateCreated = time.Now()
+
+	if err = json.Unmarshal(body, &dto); err != nil {
+		return nil, err
+	}
+
+	return &dto, nil
 }

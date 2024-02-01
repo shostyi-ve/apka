@@ -23,6 +23,7 @@ require (
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/mattn/go-sqlite3 v1.11.0 // indirect
+	github.com/open-meteo/open-meteo v0.0.0-20240131111551-c86e9e5db557 // indirect
 	github.com/samber/lo v1.39.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.16.0 // indirect
