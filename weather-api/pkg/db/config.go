@@ -2,7 +2,7 @@ package db
 
 import "fmt"
 
-type DBConfig struct {
+type Config struct {
 	Port     string `env:"DB_PORT"`
 	Host     string `env:"DB_HOST"`
 	Name     string `env:"DB_NAME"`
@@ -10,7 +10,7 @@ type DBConfig struct {
 	Password string `env:"DB_PASS"`
 }
 
-func (db *DBConfig) GetConnectString() string {
+func (db *Config) GetConnectString() string {
 	info := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		db.Host,
@@ -23,6 +23,6 @@ func (db *DBConfig) GetConnectString() string {
 	return info
 }
 
-func NewDBConf() *DBConfig {
-	return &DBConfig{}
+func NewDBConf() *Config {
+	return &Config{}
 }

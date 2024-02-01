@@ -14,6 +14,7 @@ require (
 	github.com/andybalholm/brotli v1.0.0 // indirect
 	github.com/gofiber/utils v0.0.10 // indirect
 	github.com/gorilla/schema v1.1.0 // indirect
+	github.com/hectormalot/omgo v0.1.3 // indirect
 	github.com/ichtrojan/go-location v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20231201235250-de7065d80cb9 // indirect

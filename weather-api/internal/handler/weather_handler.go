@@ -8,7 +8,9 @@ import (
 	"github.com/gofiber/fiber"
 )
 
-type WeatherHandler struct{}
+type WeatherHandler struct{
+
+}
 
 func NewWeatherHandler() *WeatherHandler {
 	return &WeatherHandler{}
@@ -26,4 +28,9 @@ func (h *WeatherHandler) GetWeather(ctx *fiber.Ctx) {
 	}
 
 	ctx.SendBytes(file)
+}
+
+func (h *WeatherHandler) PredictWeather(ctx *fiber.Ctx) {
+
+
 }

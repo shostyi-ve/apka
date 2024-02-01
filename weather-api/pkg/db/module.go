@@ -8,5 +8,5 @@ import (
 var Module = fx.Provide(
 	context.TODO,
 	NewDBConf,
-	GetDBConnect,
+	GetConnect,
 )
