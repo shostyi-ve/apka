@@ -1,4 +1,4 @@
-package countriesnow
+package open_meteo
 
 import "go.uber.org/fx"
 
