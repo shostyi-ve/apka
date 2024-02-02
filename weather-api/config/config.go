@@ -6,7 +6,8 @@ import (
 )
 
 type Config struct {
-	HTTPServerPort string `env:"HTTP_SERVER_PORT"`
+	HTTPServerPort        string `env:"HTTP_SERVER_PORT"`
+	WeatherPredictionHost string `env:"WEATHER_PREDICTION_HOST"`
 }
 
 func NewConfig() (*Config, error) {
