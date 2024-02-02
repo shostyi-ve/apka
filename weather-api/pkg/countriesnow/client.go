@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -36,14 +35,14 @@ type Country struct {
 func (c *Client) AllCountries(_ context.Context) ([]Country, error) {
 	resp, err := http.Get(getCountriesURL)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	var dto = AllCountriesResponse{}
@@ -74,17 +73,16 @@ func (c *Client) CitiesByCountry(_ context.Context, req CitiesByCountryRequest) 
 		return nil, err
 	}
 
-	fmt.Println(string(reqBody))
 	resp, err := http.Post(getCitiesByCountryURL, "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	var dto = CitiesByCountryResponse{}

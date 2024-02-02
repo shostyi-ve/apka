@@ -24,7 +24,7 @@ func (h *GeoHandler) RegisterRoutes(app *fiber.App) {
 func (h *GeoHandler) GetCountries(ctx *fiber.Ctx) {
 	countries, err := h.countryNowClient.AllCountries(ctx.Context())
 	if err != nil {
-		panic(err)
+		ctx.Write(err)
 	}
 
 	ctx.JSON(countries)
@@ -37,7 +37,7 @@ func (h *GeoHandler) GetCities(ctx *fiber.Ctx) {
 
 	cities, err := h.countryNowClient.CitiesByCountry(ctx.Context(), req)
 	if err != nil {
-		panic(err)
+		ctx.Write(err)
 	}
 
 	ctx.JSON(cities)
