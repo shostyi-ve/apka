@@ -2,9 +2,10 @@ package weather
 
 import (
 	"context"
+	"time"
+
 	weather_prediction_api "github.com/shostyi-ve/apka/weather/internal/infrustructure/external/weather-prediction-api"
 	"github.com/shostyi-ve/apka/weather/pkg/open_meteo"
-	"time"
 )
 
 type WeatherService struct {
@@ -28,7 +29,7 @@ func (w *WeatherService) GetPrediction(ctx context.Context, city string) (string
 			Lon: coords.Lon,
 		},
 		StartDate: time.Now().In(time.FixedZone("GMT", 0)).Add(-7 * 24 * time.Hour),
-		EndData:   time.Now().In(time.FixedZone("GMT", 0)),
+		EndDate:   time.Now().In(time.FixedZone("GMT", 0)),
 	})
 	if err != nil {
 		return "", err
@@ -49,7 +50,7 @@ func (w *WeatherService) GetHistory(ctx context.Context, start time.Time, end ti
 			Lon: coords.Lon,
 		},
 		StartDate: start,
-		EndData:   end,
+		EndDate:   end,
 	})
 	if err != nil {
 		return "", err

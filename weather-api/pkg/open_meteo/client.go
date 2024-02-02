@@ -38,7 +38,7 @@ type HistoryResponse struct {
 type HistoryRequest struct {
 	Coordinates Coordinates
 	StartDate   time.Time
-	EndData     time.Time
+	EndDate     time.Time
 }
 
 type Coordinates struct {
@@ -69,7 +69,7 @@ func (c *Client) Coordinates(_ context.Context, req CoordinatesRequest) (*Coordi
 }
 
 func (c *Client) History(_ context.Context, req HistoryRequest) (*HistoryResponse, error) {
-	apiURL := fmt.Sprintf(historyAPIURL, req.Coordinates.Lat, req.Coordinates.Lon, req.StartDate.Format("2006-01-02"), req.EndData.Format("2006-01-02"))
+	apiURL := fmt.Sprintf(historyAPIURL, req.Coordinates.Lat, req.Coordinates.Lon, req.StartDate.Format("2006-01-02"), req.EndDate.Format("2006-01-02"))
 
 	resp, err := http.Get(apiURL)
 	if err != nil {
