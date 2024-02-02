@@ -196,7 +196,7 @@
         "type": "marcusolsson-json-datasource",
         "uid": "f85619a8-02fb-49d5-8190-5b4b05ed13bc"
       },
-      "description": "Temperature in сelsius",
+      "description": "Forecast for next 24 hours",
       "fieldConfig": {
         "defaults": {
           "color": {
