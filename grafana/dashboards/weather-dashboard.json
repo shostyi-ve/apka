@@ -498,7 +498,7 @@
             {
               "jsonPath": "$.hourly.cloud_cover[*]",
               "language": "jsonpath",
-              "name": "Cloud cover percentage",
+              "name": "Cloud cover %",
               "type": "number"
             }
           ],
