@@ -1,9 +1,10 @@
 package handler
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber"
 	"github.com/shostyi-ve/apka/weather/internal/service/weather"
-	"time"
 )
 
 type WeatherHandler struct {
